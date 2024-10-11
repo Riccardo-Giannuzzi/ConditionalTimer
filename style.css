@@ -1,0 +1,246 @@
+:root {
+    --background: #476f94;
+    --foreground: #FFFFFF;
+    --borderradius: 20px;
+    --font: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color:  var(--background);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.divider {
+    width: 50%;      /* Imposta la larghezza al 50% */
+    margin: 20px auto; /* Centra la riga orizzontale */
+    border: none;    /* Rimuove il bordo predefinito */
+    border-top: 2px solid #333; /* Aggiunge una linea di divisione */
+}
+
+.container {
+    text-align: center;
+    margin-top: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--borderradius);
+    padding: 40px;
+    width: 500px;
+    height: 370px;
+}
+
+.settings {
+    text-align: center;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0);
+    padding: 20px;
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#settingsFunction {
+    text-align: center;
+}
+
+#functionsLabel {
+    width: 0 auto; 
+    margin: 0 auto;
+    font-size: 48px;
+
+}
+
+#selectedFunction {
+    display: inline-block;
+    width: 170px;
+    padding: 10px;
+    text-align: center;
+    font-size: 28px;
+    transition: transform 0.3s ease; /* Aggiungi la transizione per l'animazione */
+}
+.arrowButton {
+    width: 35px;
+    height: 35px;
+    padding: 5px 5px; /* Padding */
+    font-size: 17px;
+    box-shadow: 0 4px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
+}
+
+.arrowButton:active {
+    transform: translateY(4px); /* Sposta verso il basso quando premuto */
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */x
+}
+
+.velocityLabel {
+    font-size: 28px;
+}
+
+input[type="text"] {
+    -webkit-appearance: none; /* Rimuove lo stile di default su alcuni browser */
+    -moz-appearance: textfield; /* Rimuove le freccette in Firefox */
+    appearance: none; /* Rimuove le freccette in altri browser */
+    
+    font-size: 24px;
+    text-align: center; /* Per allineare il testo */
+    padding: 5px;
+    width: 60px; /* Dimensioni in linea con il layout */
+    
+    border: 0px solid var(--background); /* Bordo sottile e pulito */
+    border-radius: var(--borderradius);
+    background-color: #f5f5f5; /* Colore di sfondo chiaro */
+    color: var(--background); /* Colore del testo */
+    
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra delicata */
+    transition: all 0.3s ease; /* Transizione per l'effetto di hover */
+    -webkit-appearance: none; /* Rimuove le frecce su WebKit */
+    -moz-appearance: textfield; /* Rimuove le frecce su Firefox */
+}
+
+input[type="text"]:hover {
+    border-color: #a3a3a3; /* Cambia il colore del bordo in hover */
+}
+
+input[type="text"]:focus {
+    outline: none; /* Rimuove il bordo di focus predefinito */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra diversa quando è in focus */
+}
+
+
+
+#timer {
+    font-size: 128px;
+    font-family: var(--font);
+    font-weight: 700; /* Grassetto */
+    margin-bottom: 20px;
+    color: var(--foreground); 
+    text-shadow: 0 1px 0px rgba(230, 230, 230, 1)
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.answer{
+    display: none;
+    justify-content: space-around;
+}
+
+#settingsButton {
+    position: absolute;        /* Posizionamento assoluto */
+    right: 20px;              /* Distanza dal lato destro */
+    top: 20px;                /* Distanza dalla parte superiore */
+    padding: 10px 20px;  
+    width: 80px;
+    height: 76px;
+    font-size: 52px;
+    transition: right 0.5s ease;  /* Transizione per la larghezza */
+}
+
+.sidebar {
+    height: 100%;                 /* Altezza totale */
+    width: 320px;
+    position: fixed;              /* Fissa a destra */
+    top: 0;
+    right: 0;                     /* Posizionata a destra */
+    background-color: rgba(255, 255, 255, 0.15);       /* Colore di sfondo */
+    transform: translateX(100%); /* Nasconde la barra */
+    transition: transform 0.5s ease; /* Effetto di transizione */
+    padding-top: 60px;            /* Spazio dall'alto */
+    border-top-left-radius: var(--borderradius); /* Angoli arrotondati */
+    border-bottom-left-radius: var(--borderradius); /* Angoli arrotondati */
+    font-family: var(--font);
+    font-size: 30px; /* Dimensione del font */
+    font-family: var(--font);
+    font-weight: 600; /* Grassetto */
+    color: var(--foreground);
+    display: flex;
+    justify-content: center; /* centra orizzontalmente */
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Mostra la barra */
+}
+
+#startButton {
+    background-color: var(--foreground); /* Verde */
+    color: var(--background); /* Testo bianco */
+    border: none; /* Nessun bordo */
+    padding: 15px 32px; /* Padding */
+    width: 200px;
+    height: 70px;
+    text-align: center; /* Testo centrato */
+    text-decoration: none; /* Nessuna decorazione */
+    display: inline-block; /* Inline-block */
+    font-size: 30px; /* Dimensione del font */
+    font-family: var(--font);
+    font-weight: 600; /* Grassetto */
+    margin: 4px 2px; /* Margine */
+    cursor: pointer; /* Puntatore a mano */
+    border-radius: var(--borderradius); /* Angoli arrotondati */
+    box-shadow: 0 8px 0px rgba(230, 230, 230, 1); /* Ombra per effetto 3D */
+    transition: all 0.1s ease; /* Transizione */
+}
+
+#startButton.pressed {
+    transform: translateY(8px); /* Sposta verso il basso quando premuto */
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
+}
+
+button {
+    background-color: var(--foreground); /* Verde */
+    color: var(--background); /* Testo bianco */
+    border: none; /* Nessun bordo */
+    padding: 15px 32px; /* Padding */
+    width: 100px;
+    height: 70px;
+    text-align: center; /* Testo centrato */
+    text-decoration: none; /* Nessuna decorazione */
+    display: inline-block; /* Inline-block */
+    font-size: 30px; /* Dimensione del font */
+    font-family: var(--font)
+    font-weight: 600; /* Grassetto */
+    margin: 4px 2px; /* Margine */
+    cursor: pointer; /* Puntatore a mano */
+    border-radius: var(--borderradius); /* Angoli arrotondati */
+    box-shadow: 0 8px 0px rgba(230, 230, 230, 1); /* Ombra per effetto 3D */
+    transition: all 0.1s ease; /* Transizione */
+}
+
+#yesButton:active {
+    transform: translateY(8px); /* Sposta verso il basso quando premuto */
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
+}
+
+#noButton:active {
+    transform: translateY(8px); /* Sposta verso il basso quando premuto */
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
+}
+
+#settingsButton:active {
+    transform: translateY(8px); /* Sposta verso il basso quando premuto */
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
+}
+
+
+.blink {
+    animation: blink-animation 1.4s steps(4, start) infinite; /* Applicazione dell'animazione */
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden; /* Nasconde il testo */
+    }
+}
