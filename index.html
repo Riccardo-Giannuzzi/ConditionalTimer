@@ -52,9 +52,11 @@
         let clickSound = document.getElementById("clickSound");
         
         const functions = ["Linear", "Exponential", "Logarithmic"];
-        let functionIndex = 2;
         let functionLabel = document.getElementById("selectedFunction");
-        let currentVelocity = 50;
+        let functionIndex = 2;
+        updateFunction();
+        let currentVelocity;
+        updateVelocity(50);
 
         // Carica dal local storage
         if (localStorage.getItem("velocity")) {
@@ -167,27 +169,21 @@
         }
 
         function conditionResponse(respected) {
-            /*const factor = 1.2;
-            if (respected) {
-                lastTime = lastTime ** factor;
-                lastTime = Math.round(lastTime);
-                remainingTime = lastTime;
-            } else {
-                if(lastTime > 1){
-                    lastTime = lastTime ** (1/factor);
-                    lastTime = Math.round(lastTime);
-                }
-                else {
-                    lastTime = 2;
-                }
-                remainingTime = lastTime;
-            }*/
-
-            if(functionIndex == 0){
-                linear(respected);
-            } else {
-                // altre funzioni poi
+            switch (functionIndex) {
+                case 0:
+                    linear(respected);
+                    break;
+                case 1:
+                    exponential(respected);
+                    break;
+                case 2:
+                    logarithmic(respected);
+                    break;
+                default:
+                    // does nothing
+                    break;
             }
+
             // controllo validità del tempo
             if(lastTime < 5)
                 lastTime = 5;
@@ -206,7 +202,7 @@
             }
         }
 
-        // coefficente da 1.2 a 5
+        // coefficient from 1.2 to 5
         function linear(respected){
             let coefficient = 1.2 + ( (currentVelocity - 1) * (5 - 1.2) ) / (100 - 1);
             if(respected){
@@ -218,9 +214,9 @@
             } 
         }
 
-        // esponente da 1.1 a 3
+        // exponent from 1.1 to 3
         function exponential(respected){
-            let coefficient = 1.1 + ( (currentVelocity - 1) * (3 - 1.1) ) / (100 - 1);
+            let exponent = 1.1 + ( (currentVelocity - 1) * (3 - 1.1) ) / (100 - 1);
             if(respected){
                 lastTime = lastTime ** exponent;
                 lastTime = Math.round(lastTime);
@@ -230,16 +226,44 @@
             } 
         }
 
-        // coefficente da 
+        // coefficient from 10 to 40
         function logarithmic(respected){
-            let coefficient = 1.2 + ( (currentVelocity - 1) * (5 - 1.2) ) / (100 - 1);
+            let coefficient = 10 + ( (currentVelocity - 1) * (40 - 10) ) / (100 - 1);
             if(respected){
-                lastTime = lastTime + Math.log(lastTime + 1);
+                lastTime = lastTime + coefficient * Math.log( (lastTime / 25) + 1);
                 lastTime = Math.round(lastTime);
             } else {
-                lastTime = lastTime - Math.log(lastTime + 1);
+                lastTime = previousLogarithmicTime(lastTime);
                 lastTime = Math.round(lastTime);
             } 
+        }
+
+        function previousLogarithmicTime(y) {
+            let low = 0;
+            let high = y;
+            let tol = 0.1;  // Tolleranza
+            let maxIter = 100;  // Massimo numero di iterazioni
+            let x;
+
+            for (let i = 0; i < maxIter; i++) {
+                x = (low + high) / 2;  // Media dei due estremi
+
+                // Calcola f(x)
+                let f = x + 25 * Math.log(x / 25 + 1);
+
+                if (Math.abs(f - y) < tol) {
+                    // Se la differenza è minore della tolleranza, fermati
+                    return x;
+                } else if (f < y) {
+                    // Se f(x) è minore di y, aumenta low
+                    low = x;
+                } else {
+                    // Se f(x) è maggiore di y, diminuisci high
+                    high = x;
+                }
+            }
+
+            return x;  // Restituisci la soluzione approssimata
         }
 
 

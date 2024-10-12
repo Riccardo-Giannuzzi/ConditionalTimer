@@ -80,7 +80,7 @@ h1 {
 
 .arrowButton:active {
     transform: translateY(4px); /* Sposta verso il basso quando premuto */
-    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */x
+    box-shadow: 0 0px 0px rgba(230, 230, 230, 1); /* Ombra più piccola per effetto 2D */
 }
 
 .velocityLabel {
@@ -117,7 +117,58 @@ input[type="text"]:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Aggiunge un'ombra diversa quando è in focus */
 }
 
-
+/* Stile per l'input range */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 8px; /* Altezza della barra */
+    background: linear-gradient(to right, blue 0%, blue 50%, lightgray 50%); /* Sfondo con gradiente */
+    border-radius: 5px;
+    outline: none;
+    margin-top: 10px;
+  }
+  
+  /* Stile per il thumb (il pulsante centrale dello slider) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px; /* Larghezza del thumb */
+    height: 24px; /* Altezza del thumb */
+    background: var(--foreground);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px var(--background); /* Ombra per l'effetto rilievo */
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--foreground);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px var(--background);
+    cursor: pointer;
+  }
+  
+  /* Cambia il colore della barra prima e dopo il thumb */
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--background);
+    height: 8px;
+    border-radius: 5px;
+  }
+  
+  /* Stile della parte selezionata su Firefox */
+  input[type="range"]::-moz-range-progress {
+    background-color: var(--background);
+    height: 8px;
+    border-radius: 5px;
+  }
+  
+  input[type="range"]::-moz-range-track {
+    background-color: var(--foreground);
+    height: 8px;
+    border-radius: 5px;
+  }
 
 #timer {
     font-size: 128px;
@@ -210,7 +261,7 @@ button {
     text-decoration: none; /* Nessuna decorazione */
     display: inline-block; /* Inline-block */
     font-size: 30px; /* Dimensione del font */
-    font-family: var(--font)
+    font-family: var(--font);
     font-weight: 600; /* Grassetto */
     margin: 4px 2px; /* Margine */
     cursor: pointer; /* Puntatore a mano */
